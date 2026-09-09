@@ -94,20 +94,19 @@
   --radius-2xl: 24px;
 
   /* ------------------------------------------------------------------
-   * Schaduwen: een rand is een ring, geen border.
+   * Schaduwen staan hier bewust NIET.
    *
-   * Gemeten op elevenlabs.io: hun vlakken dragen inset-ringen van een halve
-   * pixel op lage dekking, bijvoorbeeld
-   * `rgba(0,0,0,0.075) 0 0 0 0.5px inset`. Een halve pixel omdat een hele
-   * pixel op een scherm met hoge dichtheid te zwaar wordt.
+   * Discendo heeft een eigen, gemeten schaduwset uit de Vercel-app: een rand is
+   * daar een ring van 1px in --border, zonder inset. Op elevenlabs.io is diezelfde
+   * rand een ring van een halve pixel mét inset. Twee metingen, twee bronnen, en
+   * op 9 september 2026 stonden ze allebei onder de naam --shadow-ring. Die van
+   * het product won stil, want een product importeert dit bestand en schrijft er
+   * daarna overheen.
    *
-   * Deze twee leunen op --border, en dat token zet elk product zelf, want het
-   * hangt samen met de achtergrond die dat product kiest. ------------------ */
-
-  --shadow-ring: 0 0 0 0.5px var(--border) inset;
-  --shadow-vlak:
-    0 0 0 0.5px var(--border) inset, 0 1px 1px 0 rgb(0 0 0 / 0.04),
-    0 4px 8px -4px rgb(0 0 0 / 0.04);
+   * Een gedeeld pakket met een token dat per repo iets anders betekent is erger
+   * dan geen token. Schaduwen blijven dus per product tot een tweede repo ze echt
+   * nodig heeft; dan kiezen we met een scherm ervoor welke meting wint.
+   * ------------------------------------------------------------------------- */
 }
 
 @layer base {

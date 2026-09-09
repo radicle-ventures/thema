@@ -27,10 +27,18 @@ Er viel dus niets te extraheren. Er viel iets te besluiten.
 
 ## Wat er in zit, en wat niet
 
-**Het systeem**, hier: de neutrale ladder, de radiusladder, de schaduwen en de
-letterafstand op lopende tekst.
+**Het systeem**, hier: de neutrale ladder, de radiusladder en de letterafstand
+op lopende tekst.
 
 **De identiteit**, per product: de accentkleur en het lettertype.
+
+**Schaduwen ook per product**, en dat was op 9 september 2026 nog niet zo. Ze
+stonden hier, en Discendo bleek onder dezelfde naam `--shadow-ring` een andere
+waarde te hebben staan: hun rand is een ring van 1px zonder inset, gemeten op de
+Vercel-app, en die van elevenlabs.io is een halve pixel mét inset. Het product
+importeert dit bestand en schrijft er daarna overheen, dus die van het product won
+zonder dat iemand het zag. Eén naam die per repo iets anders betekent is erger dan
+geen naam, dus zijn ze eruit tot een tweede repo ze echt nodig heeft.
 
 Die scheiding is een keuze van Wilfred, 9 september 2026: "die kan per org anders
 inderdaad". Drie producten die er precies hetzelfde uitzien betekent dat geen van
@@ -53,7 +61,7 @@ ladder.
 ## Gebruik
 
 ```json
-"@radicle/thema": "github:radicle-ventures/thema#v1"
+"@radicle/thema": "github:radicle-ventures/thema#v2"
 ```
 
 Geen registry, geen tokens in CI, geen buildstap. In de `globals.css` van het
