@@ -1,0 +1,127 @@
+/* Het gedeelde ontwerpsysteem van Radicle.
+ *
+ * Wat hier staat is het SYSTEEM: de ladders, de ritmes en de afstanden. Wat hier
+ * niet staat is de IDENTITEIT: de accentkleur en het lettertype. Die zet elk
+ * product zelf, want Radicle is een studio, Discendo een werkhulpmiddel en
+ * Periscope een onderzoeksmotor. Drie producten die er precies hetzelfde uitzien
+ * betekent dat geen van drieën een gezicht heeft.
+ *
+ * Gebruik, in de globals.css van een product:
+ *
+ *     @import "tailwindcss";
+ *     @import "@radicle/thema";
+ *
+ *     :root {
+ *       --primary: <de accentkleur van dit product>;
+ *     }
+ *
+ * Alles wat hieronder staat is gemeten, niet gekozen. De bron is elevenlabs.io,
+ * doorgemeten op 8 en 9 september 2026. Waar een waarde uit een meting komt staat
+ * de meting erbij, zodat een volgende sessie hem kan narekenen in plaats van
+ * moeten geloven.
+ *
+ * Vereist Tailwind 4. Het thema is een CSS-bestand omdat Tailwind 4 CSS-first is;
+ * er is geen buildstap en geen JavaScript.
+ */
+
+@theme {
+  /* ------------------------------------------------------------------
+   * De neutrale ladder: stone, niet grijs.
+   *
+   * De neutralen van elevenlabs.io zijn opgemeten en omgerekend naar oklch, en
+   * twee ervan zijn letterlijk Tailwinds stone:
+   *
+   *   hun gedempte tekst  rgb(119,113,105)  = oklch(55.2% 0.014 75.3)
+   *   stone-500                               oklch(55.3% 0.013 58.071)
+   *
+   *   hun donkere tekst   rgb(68,64,59)     = oklch(37.4% 0.010 73.6)
+   *   stone-700                               oklch(37.4% 0.01  67.558)
+   *
+   * Dat is geen toeval; ze draaien op dezelfde ladder.
+   *
+   * Beide neutrale ladders van Tailwind Plus moeten mee, anders splitst een
+   * scherm in een warme en een koele helft: Catalyst schrijft `zinc` hard in zijn
+   * componenten en de UI-blokken schrijven `gray`. Door zinc naar stone te laten
+   * wijzen loopt gray er via de tweede mapping vanzelf achteraan, zonder dat er
+   * één regel van Tailwind Plus wordt aangeraakt.
+   *
+   * Gebruikt een product geen Tailwind Plus, dan doet de gray-mapping niets en
+   * schaadt hij ook niets. ------------------------------------------------ */
+
+  --color-zinc-50: var(--color-stone-50);
+  --color-zinc-100: var(--color-stone-100);
+  --color-zinc-200: var(--color-stone-200);
+  --color-zinc-300: var(--color-stone-300);
+  --color-zinc-400: var(--color-stone-400);
+  --color-zinc-500: var(--color-stone-500);
+  --color-zinc-600: var(--color-stone-600);
+  --color-zinc-700: var(--color-stone-700);
+  --color-zinc-800: var(--color-stone-800);
+  --color-zinc-900: var(--color-stone-900);
+  --color-zinc-950: var(--color-stone-950);
+
+  --color-gray-50: var(--color-zinc-50);
+  --color-gray-100: var(--color-zinc-100);
+  --color-gray-200: var(--color-zinc-200);
+  --color-gray-300: var(--color-zinc-300);
+  --color-gray-400: var(--color-zinc-400);
+  --color-gray-500: var(--color-zinc-500);
+  --color-gray-600: var(--color-zinc-600);
+  --color-gray-700: var(--color-zinc-700);
+  --color-gray-800: var(--color-zinc-800);
+  --color-gray-900: var(--color-zinc-900);
+  --color-gray-950: var(--color-zinc-950);
+
+  /* ------------------------------------------------------------------
+   * De radiusladder.
+   *
+   * Geteld op elevenlabs.io, alle zichtbare elementen hoger dan 24 pixels:
+   *
+   *   4px      103 keer   besturingselementen: knop, invoerveld, klein vlak
+   *   9999px    97 keer   pillen en ronde knoppen
+   *   24px      35 keer   grote vlakken: kaart, paneel, dialoog
+   *   16px      12 keer   middelgrote vlakken
+   *
+   * Bewust vaste stappen en geen optelsom bij een basiswaarde: de ladder is niet
+   * lineair. Een knop van 4px naast een kaart van 24px is hun ritme, en een
+   * berekende tussenstap breekt dat. ------------------------------------- */
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 24px;
+
+  /* ------------------------------------------------------------------
+   * Schaduwen: een rand is een ring, geen border.
+   *
+   * Gemeten op elevenlabs.io: hun vlakken dragen inset-ringen van een halve
+   * pixel op lage dekking, bijvoorbeeld
+   * `rgba(0,0,0,0.075) 0 0 0 0.5px inset`. Een halve pixel omdat een hele
+   * pixel op een scherm met hoge dichtheid te zwaar wordt.
+   *
+   * Deze twee leunen op --border, en dat token zet elk product zelf, want het
+   * hangt samen met de achtergrond die dat product kiest. ------------------ */
+
+  --shadow-ring: 0 0 0 0.5px var(--border) inset;
+  --shadow-vlak:
+    0 0 0 0.5px var(--border) inset, 0 1px 1px 0 rgb(0 0 0 / 0.04),
+    0 4px 8px -4px rgb(0 0 0 / 0.04);
+}
+
+@layer base {
+  /* ------------------------------------------------------------------
+   * Een spoor letterafstand op lopende tekst.
+   *
+   * Gemeten op elevenlabs.io: 0.14px bij 14px, 0.15px bij 15px en 0.16px bij
+   * 16px. Steeds dezelfde verhouding, dus één regel en geen reeks waarden.
+   *
+   * Bewust alleen op lopende tekst. Diezelfde meting gaf bij hun koppen van
+   * 30px `letter-spacing: normal`; op dat formaat maakt extra afstand een kop
+   * slapper. Alles wat zijn eigen tracking zet, zoals `tracking-tight` op grote
+   * koppen, overschrijft dit vanzelf. ------------------------------------- */
+  body {
+    letter-spacing: 0.01em;
+  }
+}

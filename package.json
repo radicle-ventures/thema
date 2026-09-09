@@ -1,0 +1,12 @@
+{
+  "name": "@radicle/thema",
+  "version": "1.0.0",
+  "description": "Het gedeelde ontwerpsysteem van Radicle: ladders, ritmes en afstanden. Geen identiteit; die zet elk product zelf.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./thema.css"
+  },
+  "files": ["thema.css", "LEESMIJ.md"]
+}
