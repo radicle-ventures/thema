@@ -13,9 +13,12 @@ regels thema en deelden daarvan niets. Gemeten:
 | radicle-website | ^4.2.2 | 586 | 198 |
 | periscope | ^4 | 184 | 92 |
 
-Zeventig tokennamen komen in alle drie voor, want alle drie gebruiken shadcn.
-**Van die zeventig heeft er geen enkele in alle drie dezelfde waarde.** Een
-steekproef:
+Negenenzestig tokennamen komen in alle drie voor, want alle drie gebruiken
+shadcn. Drieëndertig daarvan zijn doorverwijzingen (`--color-primary:
+var(--primary)`): dezelfde regel in alle drie, en in elke repo een andere kleur.
+Blijven over zesendertig met een echte waarde erin. **Daarvan zijn er twee in
+alle drie gelijk, en dat zijn `--card` en `--popover`, allebei wit.** Een
+steekproef uit de rest:
 
 | Token | discendo | radicle-website | periscope |
 |---|---|---|---|
@@ -61,7 +64,7 @@ ladder.
 ## Gebruik
 
 ```json
-"@radicle/thema": "github:radicle-ventures/thema#v2"
+"@radicle/thema": "github:radicle-ventures/thema#v3"
 ```
 
 Geen registry, geen tokens in CI, geen buildstap. In de `globals.css` van het
